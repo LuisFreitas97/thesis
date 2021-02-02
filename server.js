@@ -2,6 +2,7 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import cors  from "cors";
 import { DbConfig } from './app/config/db.config.js';
+import {router} from './app/routes/web.js';
 
 const app = express();
 
@@ -18,9 +19,11 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 // simple route
-app.get("/", (req, res) => {
+/*app.get("/", (req, res) => {
   res.json({ message: "Welcome to application." });
-});
+});*/
+
+app.use('/',router);
 
 // make db connection
 var db = new DbConfig();
