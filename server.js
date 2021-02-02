@@ -1,6 +1,7 @@
-const express = require("express");
-const bodyParser = require("body-parser");
-const cors = require("cors");
+import express from 'express';
+import bodyParser from 'body-parser';
+import cors  from "cors";
+import { DbConfig } from './app/config/db.config.js';
 
 const app = express();
 
@@ -20,6 +21,10 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.get("/", (req, res) => {
   res.json({ message: "Welcome to application." });
 });
+
+// make db connection
+var db = new DbConfig();
+db.connectToDB();
 
 // set port, listen for requests
 const PORT = process.env.PORT || 8080;
