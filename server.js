@@ -1,7 +1,6 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import cors  from "cors";
-import { DbConfig } from './app/config/db.config.js';
 import {router} from './app/routes/web.js';
 
 const app = express();
@@ -25,9 +24,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use('/',router);
 
-// make db connection
-var db = new DbConfig();
-db.connectToDB();
 
 // set port, listen for requests
 const PORT = process.env.SERVICE_PORT || 8080;
